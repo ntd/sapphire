@@ -23,10 +23,6 @@ class InlineFormAction extends FormField {
 		parent::__construct($action, $title, null, null);
 	}
 
-	public function performReadonlyTransformation() {
-		return $this->castedCopy('InlineFormAction_ReadOnly');
-	}
-
 	public function Field($properties = array()) {
 		if($this->includeDefaultJS) {
 			Requirements::javascriptTemplate(FRAMEWORK_DIR . '/javascript/InlineFormAction.js',

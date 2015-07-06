@@ -159,6 +159,9 @@ class FormFieldTest extends SapphireTest {
 		$this->assertContains('readonly="readonly"', $field->getAttributesHTML());
 		$field->setReadonly(false);
 		$this->assertNotContains('readonly="readonly"', $field->getAttributesHTML());
+		$this->assertInstanceOf('FormField', $field->performReadonlyTransformation());
+		eval("class FormField_Readonly extends FormField {}");
+		$this->assertInstanceOf('FormField_Readonly', $field->performReadonlyTransformation());
 	}
 
 	public function testDisabled() {
