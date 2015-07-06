@@ -36,13 +36,6 @@ class CurrencyField extends TextField {
 		return 'currency text';
 	}
 
-	/**
-	 * Create a new class for this field
-	 */
-	public function performReadonlyTransformation() {
-		return $this->castedCopy('CurrencyField_Readonly');
-	}
-
 	public function validate($validator) {
 		if(!empty ($this->value)
 				&& !preg_match('/^\s*(\-?\$?|\$\-?)?(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?\s*$/', $this->value)) {

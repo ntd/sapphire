@@ -855,9 +855,13 @@ class FormField extends RequestHandler {
 	 * Returns a readonly version of this field
 	 */
 	public function performReadonlyTransformation() {
-		$readonlyClassName = $this->class . '_Disabled';
+		$readonlyClassName = $this->class . '_Readonly';
+		$disabledClassName = $this->class . '_Disabled';
 		if(ClassInfo::exists($readonlyClassName)) {
 			$clone = $this->castedCopy($readonlyClassName);
+		} elseif(ClassInfo::exists($disabledClassName)) {
+			Deprecation::notice('3.2', "Using $disabledClassName as a fallback for $readOnlyClassName will be removed");
+			$clone = $this->castedCopy($disabledClassName);
 		} else {
 			$clone = $this->castedCopy('ReadonlyField');
 			$clone->setReadonly(true);
